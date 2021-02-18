@@ -36,7 +36,7 @@
     <sui-button size="big" type="submit">Enter</sui-button>
     </sui-form>
   </div>
-  <!-- <div style="
+  <div style="
     width: 550px;
     height: 300px;
     position:absolute;
@@ -53,7 +53,7 @@
         left: 50%;
         transform: translate(-50%,-50%);"
       src="https://cdn.dribbble.com/users/224485/screenshots/1985081/fun.gif">
-  </div> -->
+  </div>
 </div>
 </template>
 
@@ -69,6 +69,7 @@ export default {
     login () {
       this.$store.commit('setUserName', this.name)
       this.$router.push('/home')
+      this.$socket.emit('newUser', this.name)
     }
   }
 }

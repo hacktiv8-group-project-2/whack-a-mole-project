@@ -28,6 +28,8 @@ function gameStart () {
   }, 2000)
 }
 
+let users = [];
+
 io.on('connection', (socket) => {
   console.log('a user is connected!');
   socket.emit('updateBoard', board)
@@ -51,6 +53,12 @@ io.on('connection', (socket) => {
         gameStart()
       }
     }, 1000)
+  })
+
+  socket.on('newUser', (user) => {
+    console.log('event dari client =>', user)
+    users.push(user);
+    io.local.emit('serverUser', users)
   })
 })
 
