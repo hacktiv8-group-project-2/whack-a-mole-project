@@ -58,7 +58,13 @@ export default {
   components: {
     UserList,
     // RoomList,
-    Board
+    Board,
+    UserList
+  },
+  computed: {
+    users () {
+      return this.$store.state.users
+    }
   }
 }
 </script>
