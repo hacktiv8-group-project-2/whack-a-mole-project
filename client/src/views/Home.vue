@@ -35,6 +35,9 @@ export default {
   components: {
     UserList
   },
+  created () {
+    this.$socket.emit('endRoom', this.room || 1)
+  },
   computed: {
     users () {
       return this.$store.state.users
