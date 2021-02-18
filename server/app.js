@@ -57,7 +57,23 @@ io.on('connection', (socket) => {
 
   socket.on('newUser', (user) => {
     console.log('event dari client =>', user)
-    users.push(user);
+    let userData = {
+      name: user,
+      id: socket.id,
+      score: 0
+    }
+    users.push(userData);
+    io.local.emit('serverUser', users)
+  })
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected')
+    for(let i=0 ; i<users.length ; i++){
+      if(users[i].id === socket.id){
+        users.splice(i,1)
+        break
+      }
+    }
     io.local.emit('serverUser', users)
   })
 })
