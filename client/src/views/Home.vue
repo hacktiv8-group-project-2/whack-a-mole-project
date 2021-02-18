@@ -6,8 +6,11 @@
       width: 100%;
       min-height:100vh;
       position:relative;
-      background: rgba(204,152,102,1)">
-    <user-list style="flex-width: 400px;padding: 20px;"></user-list>
+      background: rgba(204,152,102,1);
+      justify-content: space-between;
+      padding: 20px;">
+    <user-list style="flex-width: 400px;padding: 20px 0px;"></user-list>
+    <h2 is="sui-header">{{getUserName}}</h2>
 
     <!-- <room-list
       style="
@@ -39,9 +42,9 @@
 
     <!-- Board -->
     <Board style="
-      width: 55%;
+      width: 50%;
       position: absolute;
-      top:15%;
+      top:20%;
       left:50%;
       transform: translate(-50%,0);"></Board>
   </div>
@@ -58,12 +61,14 @@ export default {
   components: {
     UserList,
     // RoomList,
-    Board,
-    UserList
+    Board
   },
   computed: {
     users () {
       return this.$store.state.users
+    },
+    getUserName () {
+      return this.$store.state.user.name
     }
   }
 }
