@@ -12,10 +12,5 @@ Vue.use(socket)
 new Vue({
   router,
   store,
-  sockets: {
-    updateBoard (board) {
-      return board
-    }
-  },
   render: h => h(App)
 }).$mount('#app')
