@@ -1,6 +1,8 @@
 <template>
   <div style="display: flex;background: rgba(163,213,176);width: 100%;min-height:100vh;">
-    <user-list style="flex-width: 400px;padding: 20px;"></user-list>
+    <sui-list relaxed style="text-align: left;">
+      <user-list style="flex-width: 400px;padding: 20px;" v-for="(user, index) in users" :key="index" :user="user"></user-list>
+    </sui-list>
 
     <!-- animation -->
     <div style="
@@ -32,6 +34,11 @@ export default {
   name: 'Home',
   components: {
     UserList
+  },
+  computed: {
+    users () {
+      return this.$store.state.users
+    }
   }
 }
 </script>

@@ -69,6 +69,7 @@ export default {
     login () {
       this.$store.commit('setUserName', this.name)
       this.$router.push('/home')
+      this.$socket.emit('newUser', this.name)
     }
   }
 }
