@@ -72,11 +72,13 @@ export default {
     return ({
       board: [],
       player: 'host' || 'guest',
-      started: false
+      started: false,
+      ended: false
     })
   },
   created () {
     this.sockets.subscribe('updateBoard', (newBoard) => {
+      // subscribe mirip kaya on. tapi karna di main.js make socket jadi middleware. jadi ga bisa pake on, disaranin make subscribe
       this.board = newBoard
     })
   },
@@ -84,7 +86,18 @@ export default {
     gameStart () {
       this.$socket.emit('gameStart')
       this.started = true
-      // inteeval randomize emit
+      // interval randomize emit
+    },
+    randomizeBoardFromSocket () {
+      let timer = 0
+      setInterval(function () {
+        if (timer >= 10) {
+          clearInterval(this)
+        } else {
+          this.$socket.emit('updateBoard')
+          timer++
+        }
+      }, 100)
     }
   },
   computed: {
