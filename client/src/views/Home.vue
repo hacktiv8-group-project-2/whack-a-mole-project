@@ -87,17 +87,24 @@ export default {
       this.$socket.emit('gameStart')
       this.started = true
       // interval randomize emit
+      this.randomizeBoardFromSocket()
     },
     randomizeBoardFromSocket () {
       let timer = 0
+      const self = this
       setInterval(function () {
         if (timer >= 10) {
           clearInterval(this)
+          self.gameEnd()
         } else {
-          this.$socket.emit('updateBoard')
+          self.$socket.emit('randomize')
           timer++
         }
-      }, 100)
+      }, 4000)
+    },
+    gameEnd () {
+      this.$socket.emit('endGame')
+      this.ended = true
     }
   },
   computed: {
