@@ -29,17 +29,8 @@
                 position:absolute;
                 width:12%;"
                 v-for="(mole,index) in moles"
-                :key="mole"
-                :class="[
-                    index === 0 ? 'satu':
-                    index === 1 ? 'dua' :
-                    index === 2 ? 'tiga':
-                    index === 3 ? 'empat':
-                    index === 4 ? 'lima':
-                    index === 5 ? 'enam':
-                    index === 6 ? 'tujuh':
-                    index === 7 ? 'delapan':
-                    '']"
+                :key="mole.id"
+                :class="generateMoleClass(mole.status, index)"
             ></Mole>
         </div>
     </div>
@@ -51,9 +42,30 @@ export default {
   components: {
     Mole
   },
+  props: ['moles'],
   data () {
     return {
-      moles: [1, 2, 3, 4, 5, 6, 7, 8]
+    //   moles: [1, 2, 3, 4, 5, 6, 7, 8]
+    }
+  },
+  methods: {
+    generateMoleClass (status, index) {
+      const arrayOfClass = []
+      const dictionaryClass = {
+        0: 'satu',
+        1: 'dua',
+        2: 'tiga',
+        3: 'empat',
+        4: 'lima',
+        5: 'enam',
+        6: 'tujuh',
+        7: 'delapan'
+      }
+
+      arrayOfClass.push(dictionaryClass[index] || '')
+
+      if (!status) arrayOfClass.push('hidden')
+      return arrayOfClass
     }
   }
 }
@@ -69,6 +81,10 @@ export default {
    -moz-user-select: none;
    -ms-user-select: none;
    user-select: none;
+}
+
+.hidden {
+    display: none;
 }
 .satu{
     top: 9.5%;

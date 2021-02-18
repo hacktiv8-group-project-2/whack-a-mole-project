@@ -38,12 +38,17 @@
     </div> -->
 
     <!-- Board -->
-    <Board style="
+    <Board
+      :moles="board"
+      style="
       width: 55%;
       position: absolute;
       top:15%;
       left:50%;
-      transform: translate(-50%,0);"></Board>
+      transform: translate(-50%,0);"
+    >
+    </Board>
+    <h2 @click.prevent="gameStart">Start</h2>
   </div>
 </template>
 
@@ -58,8 +63,26 @@ export default {
   components: {
     UserList,
     // RoomList,
-    Board,
-    UserList
+    Board
+  },
+  data () {
+    return ({
+      board: [],
+      player: 'host' || 'guest',
+      started: false
+    })
+  },
+  created () {
+    this.sockets.subscribe('updateBoard', (newBoard) => {
+      this.board = newBoard
+    })
+  },
+  methods: {
+    gameStart () {
+      this.$socket.emit('gameStart')
+      this.started = true
+      // inteeval randomize emit
+    }
   },
   computed: {
     users () {
