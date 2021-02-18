@@ -27,17 +27,17 @@
       z-index:2;">
     <sui-form>
     <sui-form-field>
-        <label style="font-size: 24px;margin-bottom:10px;">Enter your name</label>
-        <input placeholder="First Name" />
+        <!-- <label style="font-size: 24px;margin-bottom:10px;">Enter your name</label> -->
+        <sui-input size="massive" placeholder="Enter Your Name" />
     </sui-form-field>
     <!-- <sui-form-field>
         <sui-checkbox label="I agree to the Terms and Conditions" />
     </sui-form-field> -->
-    <sui-button type="submit">Enter</sui-button>
+    <sui-button size="big" type="submit">Enter</sui-button>
     </sui-form>
   </div>
   <div style="
-    width: 500px;
+    width: 550px;
     height: 300px;
     position:absolute;
     top: 60%;
@@ -47,7 +47,7 @@
   ">
     <img
       style="
-        width: 600px;
+        width: 555px;
         position:absolute;
         top: 50%;
         left: 50%;
