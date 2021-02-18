@@ -16,12 +16,13 @@ let timer
 function gameStart () {
   board = randomizeBoard(board)
   io.emit('updateBoard', board)
-  timer = setInterval(() => {
+  let timer2 = setInterval(() => {
+    console.log('reset ke -', time)
     time++
     board = randomizeBoard(board)
     io.emit('updateBoard', board)
     if (time == 10) {
-      clearInterval(timer)
+      clearInterval(timer2)
       board = clearBoard(board)
       io.emit('updateBoard', board)
     }
@@ -45,10 +46,12 @@ io.on('connection', (socket) => {
   })
 
   socket.on('gameStart', () => {
-    timer = setInterval(() => {
+    time = 0
+    let timer1 = setInterval(() => {
       time++
+      console.log('count down', time)
       if (time == 3) {
-        clearInterval(timer)
+        clearInterval(timer1)
         time = 0
         gameStart()
       }

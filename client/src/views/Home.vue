@@ -58,8 +58,7 @@ export default {
   components: {
     UserList,
     // RoomList,
-    Board,
-    UserList
+    Board
   },
   computed: {
     users () {
