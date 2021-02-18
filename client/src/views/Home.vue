@@ -41,12 +41,17 @@
     </div> -->
 
     <!-- Board -->
-    <Board style="
+    <Board
+      :moles="board"
+      style="
       width: 50%;
       position: absolute;
       top:20%;
       left:50%;
-      transform: translate(-50%,0);"></Board>
+      transform: translate(-50%,0);"
+    >
+    </Board>
+    <h2 @click.prevent="gameStart">Start</h2>
   </div>
 </template>
 
@@ -62,6 +67,47 @@ export default {
     UserList,
     // RoomList,
     Board
+  },
+  data () {
+    return ({
+      board: [],
+      player: 'host' || 'guest',
+      started: false,
+      ended: false
+    })
+  },
+  created () {
+    this.sockets.subscribe('updateBoard', (newBoard) => {
+      // subscribe mirip kaya on. tapi karna di main.js make socket jadi middleware. jadi ga bisa pake on, disaranin make subscribe
+      this.board = newBoard
+    })
+  },
+  methods: {
+    gameStart () {
+      this.$socket.emit('gameStart')
+      this.started = true
+      // interval randomize emit
+      this.randomizeBoardFromSocket()
+    },
+    randomizeBoardFromSocket () {
+      // function yang berguna mengatur interval.
+      let timer = 0
+      const self = this
+      setInterval(function () {
+        if (timer >= 10) {
+          clearInterval(this)
+          self.gameEnd()// <= dijalanin di sini end game
+        } else {
+          self.$socket.emit('randomize')
+          timer++
+        }
+      }, 4000)
+    },
+    gameEnd () {
+      this.$socket.emit('endGame')
+      this.ended = true
+      // untuk end game kalo interval sudah abis
+    }
   },
   computed: {
     users () {
