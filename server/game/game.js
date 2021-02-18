@@ -9,14 +9,9 @@ function randomizeBoard (board) {
 }
 
 function clearBoard (board) {
-  let newBoard = []
-  board.forEach(grid => {
-    grid.status = false
-    newBoard.push(grid)
-  })
-  return newBoard
+  return Array.from({ length: board.length }).map((_, i) => ({ id: 1, status: false }))
 }
 
-let board = Array.from({ length: 36 }, (_, i) => ({ id: i, status: false }))
+let board = Array.from({ length: 8 }, (_, i) => ({ id: i, status: false }))
 
 module.exports = { board, randomizeBoard, clearBoard }
