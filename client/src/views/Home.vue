@@ -90,12 +90,13 @@ export default {
       this.randomizeBoardFromSocket()
     },
     randomizeBoardFromSocket () {
+      // function yang berguna mengatur interval.
       let timer = 0
       const self = this
       setInterval(function () {
         if (timer >= 10) {
           clearInterval(this)
-          self.gameEnd()
+          self.gameEnd()// <= dijalanin di sini end game
         } else {
           self.$socket.emit('randomize')
           timer++
@@ -105,6 +106,7 @@ export default {
     gameEnd () {
       this.$socket.emit('endGame')
       this.ended = true
+      // untuk end game kalo interval sudah abis
     }
   },
   computed: {

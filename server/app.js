@@ -37,6 +37,7 @@ io.on('connection', (socket) => {
 
   socket.on('randomize', () => {
     io.emit('updateBoard', randomizeBoard(defaultBoard))
+    //jalanin set interval dari client
   })
 
   socket.on('endGame', () => {
