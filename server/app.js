@@ -6,8 +6,8 @@ const PORT = process.env.PORT || 3000;
 const http = require('http').Server(app);
 const io = require('socket.io')(http, {
   cors: {
-    // origin: 'http://localhost:8080',
-    origin: 'https://whack-a-mole-hacktiv8.web.app',
+    origin: 'http://localhost:8080',
+    // origin: 'https://whack-a-mole-hacktiv8.web.app',
     methods: ['GET', 'POST'],
     credentials: true
   },
