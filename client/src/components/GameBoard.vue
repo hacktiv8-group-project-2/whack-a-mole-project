@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click.prevent="randomGrid">randomize</button>
-    <button @click.prevent="startGame">Start</button>
+    <button v-show="!this.$store.state.gameStatus" @click.prevent="startGame">Start</button>
     <div class="grid-container">
       <GridMole
         v-for="grid in board"
@@ -14,7 +14,7 @@
       <Grass id="grass2"/>
       <Grass id="grass3"/>
     </div>
-    <h1 is="sui-header">First header</h1>
+    <h1 is="sui-header">{{this.$store.state.message}}</h1>
   </div>
 </template>
 
@@ -34,6 +34,7 @@ export default {
     },
     startGame () {
       this.$socket.emit('gameStart')
+      this.$store.dispatch('gameReadyGo')
     }
   },
   computed: {
