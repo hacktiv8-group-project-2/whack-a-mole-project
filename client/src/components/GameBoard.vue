@@ -10,34 +10,17 @@
         :board="board"
         :gameStatus="gameStatus"
       />
-<<<<<<< HEAD
     </div>
-=======
-      <Grass id="grass1"/>
-      <Grass id="grass2"/>
-      <Grass id="grass3"/>
-    </div>
-    <h1 is="sui-header">First header</h1>
->>>>>>> 40dae957512fd183eb72577dc3f811eaff22bd19
   </div>
 </template>
 
 <script>
 import GridMole from '../components/GridMole.vue'
-<<<<<<< HEAD
-=======
-import Grass from '../components/Grass.vue'
->>>>>>> 40dae957512fd183eb72577dc3f811eaff22bd19
 
 export default {
   name: 'GameBoard',
   components: {
-<<<<<<< HEAD
     GridMole
-=======
-    GridMole,
-    Grass
->>>>>>> 40dae957512fd183eb72577dc3f811eaff22bd19
   },
   methods: {
     randomGrid () {

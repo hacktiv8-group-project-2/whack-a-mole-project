@@ -11,11 +11,6 @@ export default new Vuex.Store({
       score: 0
     },
     users: [],
-<<<<<<< HEAD
-=======
-    username: '',
-    gameStatus: false,
->>>>>>> 40dae957512fd183eb72577dc3f811eaff22bd19
     board: []
   },
   mutations: {
@@ -34,18 +29,11 @@ export default new Vuex.Store({
     changeStatus (state, payload) {
       state.board[payload.id].status = false
     },
-<<<<<<< HEAD
-=======
-    changeGameStatus (state, payload) {
-      state.gameStatus = payload
-    },
->>>>>>> 40dae957512fd183eb72577dc3f811eaff22bd19
     updateBoard (state, payload) {
       state.board = payload
     }
   },
   actions: {
-<<<<<<< HEAD
     SOCKET_userData (context, user) {
       context.commit('setUser', user)
     },
@@ -60,15 +48,6 @@ export default new Vuex.Store({
         }
       })
       context.commit('updateScore', userScore)
-=======
-    SOCKET_serverUser (context, newUser) {
-      context.commit('pushToUsers', newUser)
-    },
-    gameStart (context, payload) {
-      context.commit('changeGameStatus', true)
-    },
-    randomizeMole (context, payload) {
->>>>>>> 40dae957512fd183eb72577dc3f811eaff22bd19
     },
     SOCKET_updateBoard (context, payload) {
       context.commit('updateBoard', payload)

@@ -21,17 +21,13 @@ export default {
   methods: {
     whack () {
       if (this.grid.status === true) {
-<<<<<<< HEAD
         const newScore = this.userScore + 1
         console.log(newScore)
         this.$socket.emit('updateScore', { score: newScore, id: this.userId })
-=======
->>>>>>> 40dae957512fd183eb72577dc3f811eaff22bd19
         this.$store.commit('changeStatus', this.grid)
         this.$socket.emit('whack', this.board)
       }
     }
-<<<<<<< HEAD
   },
   computed: {
     userScore () {
@@ -40,8 +36,6 @@ export default {
     userId () {
       return this.$store.state.user.id
     }
-=======
->>>>>>> 40dae957512fd183eb72577dc3f811eaff22bd19
   }
 }
 </script>
@@ -74,10 +68,6 @@ export default {
     transition: 0.3s ease;
     height: 50px;
     margin: 6.3px 15px 0px 0px;
-<<<<<<< HEAD
-=======
-    cursor: pointer;
->>>>>>> 40dae957512fd183eb72577dc3f811eaff22bd19
     transform: translateY(39px);
   }
 </style>
