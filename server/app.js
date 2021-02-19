@@ -1,8 +1,13 @@
 const app = require('express')();
+app.get('/', (req, res) => {
+  res.send('Whack a mole project')
+})
+const PORT = process.env.PORT || 3000;
 const http = require('http').Server(app);
 const io = require('socket.io')(http, {
   cors: {
     origin: 'http://localhost:8080',
+    // origin: 'https://whack-a-mole-hacktiv8.web.app',
     methods: ['GET', 'POST'],
     credentials: true
   },
@@ -123,6 +128,6 @@ io.on('connection', (socket) => {
   })
 })
 
-http.listen(3000, () => {
+http.listen(PORT, () => {
   console.log('Server started!');
 })
