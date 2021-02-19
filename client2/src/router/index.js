@@ -1,24 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import Home from '../views/Home.vue'
-import store from '../store'
+import GameBoard from '../views/GameBoard.vue'
+// import store from '../store'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'GameBoard',
+    component: GameBoard
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: () => import('../views/Login.vue')
   }
-
 ]
 
 const router = new VueRouter({
@@ -26,12 +23,15 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
+/*
 router.beforeEach((to, from, next) => {
-  if (to.name === 'Home' && store.state.user.name === '') {
+  console.log('test')
+  if (to.name === 'GameBoard' && store.state.username === '') {
     next({ name: 'Login' })
+  } else {
+    next()
   }
-  next()
 })
+*/
 
 export default router

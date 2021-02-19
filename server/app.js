@@ -8,11 +8,56 @@ const io = require('socket.io')(http, {
   },
   allowEIO3: true
 });
+let { randomizeBoard, clearBoard, board } = require('./game/game')
+let newBoard = []
+let time = 0
+let timer
+
+function gameStart () {
+  board = randomizeBoard(board)
+  io.emit('updateBoard', board)
+  let timer2 = setInterval(() => {
+    console.log('reset ke -', time)
+    time++
+    board = randomizeBoard(board)
+    io.emit('updateBoard', board)
+    if (time == 10) {
+      clearInterval(timer2)
+      board = clearBoard(board)
+      io.emit('updateBoard', board)
+    }
+  }, 2000)
+}
 
 let users = [];
 
 io.on('connection', (socket) => {
   console.log('a user is connected!');
+  socket.emit('updateBoard', board)
+
+  socket.on('randomize', () => {
+    board = randomizeBoard(board)
+    io.emit('updateBoard', board)
+  })
+
+  socket.on('whack', (payload) => {
+    board = payload
+    io.emit('updateBoard', board)
+  })
+
+  socket.on('gameStart', () => {
+    time = 0
+    let timer1 = setInterval(() => {
+      time++
+      console.log('count down', time)
+      if (time == 2) {
+        clearInterval(timer1)
+        time = 0
+        gameStart()
+      }
+    }, 1000)
+  })
+
   socket.on('newUser', (user) => {
     console.log('event dari client =>', user)
     let userData = {
