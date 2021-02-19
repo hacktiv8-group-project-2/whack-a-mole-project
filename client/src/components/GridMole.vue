@@ -21,9 +21,20 @@ export default {
   methods: {
     whack () {
       if (this.grid.status === true) {
+        const newScore = this.userScore + 1
+        console.log(newScore)
+        this.$socket.emit('updateScore', { score: newScore, id: this.userId })
         this.$store.commit('changeStatus', this.grid)
         this.$socket.emit('whack', this.board)
       }
+    }
+  },
+  computed: {
+    userScore () {
+      return this.$store.state.user.score
+    },
+    userId () {
+      return this.$store.state.user.id
     }
   }
 }

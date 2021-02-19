@@ -10,6 +10,7 @@ const io = require('socket.io')(http, {
 });
 let { randomizeBoard, clearBoard, board } = require('./game/game')
 let newBoard = []
+let users = []
 let time = 0
 let timer
 
@@ -29,15 +30,21 @@ function gameStart () {
   }, 2000)
 }
 
-let users = [];
+function updateScore (payload) {
+  users.forEach(user => {
+    if (user.id == payload.id) {
+      user.score = payload.score
+    }
+  })
+}
 
 io.on('connection', (socket) => {
   console.log('a user is connected!');
   socket.emit('updateBoard', board)
 
-  socket.on('randomize', () => {
-    board = randomizeBoard(board)
-    io.emit('updateBoard', board)
+  socket.on('updateScore', (payload) => {
+    updateScore(payload)
+    io.emit('serverUser', users)
   })
 
   socket.on('whack', (payload) => {
@@ -66,6 +73,7 @@ io.on('connection', (socket) => {
       score: 0
     }
     users.push(userData);
+    socket.emit('userData', userData)
     io.local.emit('serverUser', users)
   })
 
