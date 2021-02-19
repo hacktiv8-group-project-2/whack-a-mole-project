@@ -21,6 +21,7 @@
             transition:all .5s ease;"
             v-bind:style="{top:isClicked?'90%':'4%'}"
             src="https://www.clipartmax.com/png/full/28-288482_mole-clipart-whack-a-mole-from-whack-a-mole.png" alt="">
+            <!-- src="https://wshimei.github.io/wdi-project-1-wshimei/images/mole2.png" -->
     </div>
     </div>
 </template>

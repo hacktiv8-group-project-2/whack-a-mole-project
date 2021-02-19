@@ -41,19 +41,28 @@
     </div> -->
 
     <!-- Board -->
-    <Board style="
+    <!-- <Board style="
       width: 50%;
       position: absolute;
       top:20%;
       left:50%;
-      transform: translate(-50%,0);"></Board>
+      transform: translate(-50%,0);"></Board> -->
+
+    <!-- Client 2 - Gameboard -->
+    <GameBoard style="
+      width: 50%;
+      position: absolute;
+      top:0%;
+      left:50%;
+      transform: translate(-50%,0);"></GameBoard>
   </div>
 </template>
 
 <script>
 import UserList from '../components/UserList'
 // import RoomList from '../components/RoomList.vue'
-import Board from '../components/Board.vue'
+// import Board from '../components/Board.vue'
+import GameBoard from '../components/GameBoard.vue'
 // @ is an alias to /src
 
 export default {
@@ -61,7 +70,8 @@ export default {
   components: {
     UserList,
     // RoomList,
-    Board
+    // Board,
+    GameBoard
   },
   computed: {
     users () {
