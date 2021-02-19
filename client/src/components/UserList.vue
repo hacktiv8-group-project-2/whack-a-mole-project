@@ -1,12 +1,12 @@
 <template>
 <sui-list class="userList">
-  <sui-list-item v-for="user in users" :key="user.id" class="userCard" relaxed style="text-align: left;">
+  <sui-list-item v-for="user in users" :key="user.id" class="userCard" relaxed style="text-align: left; padding: 7px;">
     <sui-image avatar src="https://semantic-ui-vue.github.io/static/images/avatar/small/rachel.png" />
     <sui-list-content>
       <sui-list-header>{{user.name}}</sui-list-header>
       <!-- <a is="sui-list-header">{{ user.name }}</a> -->
       <sui-list-description>
-        score <a is="sui-list-header" style="display: inline-block;">{{ user.score }}</a>
+        score: <a is="sui-list-header" style="display: inline-block;">{{ user.score }}</a>
       </sui-list-description>
     </sui-list-content>
   </sui-list-item>
@@ -34,6 +34,8 @@ export default {
 }
 
 .userCard {
-  margin: 0px 10px;
+  margin: 5px 20px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
 }
 </style>

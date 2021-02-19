@@ -71,6 +71,9 @@ export default {
       this.$router.push('/')
       this.$socket.emit('newUser', this.name)
     }
+  },
+  created () {
+    this.$socket.emit('deleteUser')
   }
 }
 </script>

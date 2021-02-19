@@ -17,10 +17,6 @@ function clearBoard (board) {
   return newBoard
 }
 
-function whack (board, id) {
-
-}
-
 let board = [
   { id: 0, status: false },
   { id: 1, status: false },

@@ -12,7 +12,6 @@ let { randomizeBoard, clearBoard, board } = require('./game/game')
 let newBoard = []
 let users = []
 let time = 0
-let timer
 
 function gameStart () {
   board = randomizeBoard(board)
@@ -25,6 +24,8 @@ function gameStart () {
     if (time == 10) {
       clearInterval(timer2)
       board = clearBoard(board)
+      //const winner = podium()
+      //console.log(winner)
       io.emit('updateBoard', board)
     }
   }, 2000)
@@ -38,6 +39,33 @@ function updateScore (payload) {
   })
 }
 
+function deleteUser (socket) {
+  for(let i=0 ; i<users.length ; i++){
+    if(users[i].id === socket.id){
+      users.splice(i,1)
+      break
+    }
+  }
+}
+
+function podium () {
+  let winner = {
+    first: '',
+    second: '',
+    third: ''
+  }
+  let highestScore = 0
+  users.forEach(user => {
+    if (user.score >= highestScore) {
+      highestScore = user.score
+      winner.third = winner.second
+      winner.second = winner.first
+      winner.first = user
+    }
+  })
+  return winner
+}
+
 io.on('connection', (socket) => {
   console.log('a user is connected!');
   socket.emit('updateBoard', board)
@@ -49,7 +77,6 @@ io.on('connection', (socket) => {
 
   socket.on('whack', (payload) => {
     console.log('whack')
-    console.log(payload)
     board = payload
     io.emit('updateBoard', board)
   })
@@ -87,6 +114,11 @@ io.on('connection', (socket) => {
         break
       }
     }
+    io.local.emit('serverUser', users)
+  })
+
+  socket.on('deleteUser', () => {
+    deleteUser(socket)
     io.local.emit('serverUser', users)
   })
 })
