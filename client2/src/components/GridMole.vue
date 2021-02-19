@@ -57,7 +57,6 @@ export default {
     transition: 0.3s ease;
     height: 50px;
     margin: 6.3px 15px 0px 0px;
-    cursor: pointer;
     transform: translateY(39px);
   }
 </style>

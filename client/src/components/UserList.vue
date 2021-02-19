@@ -1,6 +1,6 @@
 <template>
-<sui-list>
-  <sui-list-item v-for="user in this.$store.state.users" :key="user.id" relaxed style="text-align: left;">
+<sui-list class="userList">
+  <sui-list-item v-for="user in users" :key="user.id" class="userCard" relaxed style="text-align: left;">
     <sui-image avatar src="https://semantic-ui-vue.github.io/static/images/avatar/small/rachel.png" />
     <sui-list-content>
       <sui-list-header>{{user.name}}</sui-list-header>
@@ -15,6 +15,25 @@
 
 <script>
 export default {
-  props: ['user']
+  props: [
+    'user'
+  ],
+  computed: {
+    users () {
+      return this.$store.state.users
+    }
+  }
 }
 </script>
+
+<style scoped>
+.userList {
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 350px;
+  border-radius: 5px;
+}
+
+.userCard {
+  margin: 0px 10px;
+}
+</style>

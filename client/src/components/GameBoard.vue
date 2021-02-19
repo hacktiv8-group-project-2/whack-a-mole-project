@@ -10,23 +10,17 @@
         :board="board"
         :gameStatus="gameStatus"
       />
-      <Grass id="grass1"/>
-      <Grass id="grass2"/>
-      <Grass id="grass3"/>
     </div>
-    <h1 is="sui-header">{{this.$store.state.message}}</h1>
   </div>
 </template>
 
 <script>
 import GridMole from '../components/GridMole.vue'
-import Grass from '../components/Grass.vue'
 
 export default {
   name: 'GameBoard',
   components: {
-    GridMole,
-    Grass
+    GridMole
   },
   methods: {
     randomGrid () {

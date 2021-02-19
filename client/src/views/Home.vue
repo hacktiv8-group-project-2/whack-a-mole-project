@@ -10,7 +10,7 @@
       justify-content: space-between;
       padding: 20px;">
     <user-list style="flex-width: 400px;padding: 20px 0px;"></user-list>
-    <h2 is="sui-header">{{getUserName}}</h2>
+    <h2 is="sui-header"></h2>
 
     <!-- <room-list
       style="
@@ -41,28 +41,14 @@
     </div> -->
 
     <!-- Board -->
-    <!-- <Board style="
-      width: 50%;
-      position: absolute;
-      top:20%;
-      left:50%;
-      transform: translate(-50%,0);"></Board> -->
-
-    <!-- Client 2 - Gameboard -->
-    <GameBoard style="
-      width: 50%;
-      position: absolute;
-      top:0%;
-      left:50%;
-      transform: translate(-50%,0);"></GameBoard>
+    <GameBoard/>
   </div>
 </template>
 
 <script>
 import UserList from '../components/UserList'
 // import RoomList from '../components/RoomList.vue'
-// import Board from '../components/Board.vue'
-import GameBoard from '../components/GameBoard.vue'
+import GameBoard from '../components/GameBoard'
 // @ is an alias to /src
 
 export default {
@@ -70,7 +56,6 @@ export default {
   components: {
     UserList,
     // RoomList,
-    // Board,
     GameBoard
   },
   computed: {
