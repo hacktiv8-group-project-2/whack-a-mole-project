@@ -50,7 +50,7 @@ io.on('connection', (socket) => {
     let timer1 = setInterval(() => {
       time++
       console.log('count down', time)
-      if (time == 3) {
+      if (time == 2) {
         clearInterval(timer1)
         time = 0
         gameStart()
