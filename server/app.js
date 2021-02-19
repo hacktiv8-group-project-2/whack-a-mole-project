@@ -1,4 +1,7 @@
 const app = require('express')();
+app.get('/', (req, res) => {
+  res.send('Whack a mole project')
+})
 const http = require('http').Server(app);
 const io = require('socket.io')(http, {
   cors: {
