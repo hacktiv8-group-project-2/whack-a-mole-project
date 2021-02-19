@@ -48,6 +48,8 @@ io.on('connection', (socket) => {
   })
 
   socket.on('whack', (payload) => {
+    console.log('whack')
+    console.log(payload)
     board = payload
     io.emit('updateBoard', board)
   })

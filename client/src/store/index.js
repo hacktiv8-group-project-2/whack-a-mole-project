@@ -31,6 +31,9 @@ export default new Vuex.Store({
     },
     updateBoard (state, payload) {
       state.board = payload
+    },
+    setMessage (state, value) {
+      state.message = value
     }
   },
   actions: {
@@ -51,6 +54,22 @@ export default new Vuex.Store({
     },
     SOCKET_updateBoard (context, payload) {
       context.commit('updateBoard', payload)
+    },
+    gameReadyGo (context) {
+      context.commit('changeGameStatus', true)
+      let time = 0
+      context.commit('setMessage', `${2 - time}`)
+      const timer1 = setInterval(() => {
+        time++
+        // console.log('count down', time)
+        context.commit('setMessage', `${2 - 1}`)
+        if (time === 2) {
+          clearInterval(timer1)
+          time = 0
+          // gameStart()
+          context.commit('setMessage', 'GO')
+        }
+      }, 1000)
     }
   },
   modules: {
