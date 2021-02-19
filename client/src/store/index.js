@@ -7,14 +7,19 @@ export default new Vuex.Store({
   state: {
     user: {
       name: '',
+      id: '',
       score: 0
     },
     users: [],
-    username: '',
-    gameStatus: false,
     board: []
   },
   mutations: {
+    setUser (state, user) {
+      state.user = user
+    },
+    updateScore (state, score) {
+      state.user.score = score
+    },
     setUserName (state, val) {
       state.user.name = val
     },
@@ -24,9 +29,6 @@ export default new Vuex.Store({
     changeStatus (state, payload) {
       state.board[payload.id].status = false
     },
-    changeGameStatus (state, payload) {
-      state.gameStatus = payload
-    },
     updateBoard (state, payload) {
       state.board = payload
     },
@@ -35,13 +37,20 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    SOCKET_serverUser (context, newUser) {
-      context.commit('pushToUsers', newUser)
+    SOCKET_userData (context, user) {
+      context.commit('setUser', user)
     },
-    gameStart (context, payload) {
-      context.commit('changeGameStatus', true)
-    },
-    randomizeMole (context, payload) {
+    SOCKET_serverUser (context, users) {
+      context.commit('pushToUsers', users)
+      let userScore
+      users.forEach(user => {
+        console.log('serverUser search')
+        if (user.id === context.state.user.id) {
+          console.log('serverUser find')
+          userScore = user.score
+        }
+      })
+      context.commit('updateScore', userScore)
     },
     SOCKET_updateBoard (context, payload) {
       context.commit('updateBoard', payload)
